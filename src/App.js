@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
+
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Login from "./components/Login";
+import RegisterUser from "./components/RegisterUser";
+import RegisterMascota from "./components/RegisterMascota";
+import MostrarMascotas from "./components/MostrarMascotas";
+import MostrarMascota from "./components/MostrarMascota";
+import CitasMascota from "./components/CitasMascota";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="d-flex flex-column mx-5">
+        <div className="d-flex justify-content-center">
+          <h1>Clinica Veterinaria</h1>
+        </div>
+        <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="registerUser" element={<RegisterUser />} />
+          <Route path="registerMascota" element={<RegisterMascota />} />
+          <Route path="mostrarMascotas" element={<MostrarMascotas />} />
+          <Route path="mostrarMascota" element={<MostrarMascota />} />
+          <Route path="citasMascota" element={<CitasMascota />} />
+        </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
