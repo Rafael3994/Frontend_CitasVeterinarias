@@ -1,21 +1,35 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import CitasService from "../services/citas.service";
 
+function CitasMascota() {
 
-class CitasMascota extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    const { uuid } = useParams();
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [citas, setCitas] = useState({});
 
-    render() {
+    useEffect(() => {
+        try {
+            CitasService.getCitas(uuid).then((res) => {
+                console.log(res.data);
+                setCitas(res.data)
+                setIsLoaded(true);
+            })
+        } catch (error) {
+        }
+    }, []);
+
+    if (!isLoaded) {
+        return <div>Loading...</div>;
+    } else {
         return (
             <div>
                 <Link to="/">Logout</Link>
                 <br></br>
                 <br></br>
                 <h2>Citas</h2>
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -25,18 +39,27 @@ class CitasMascota extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>name</td>
-                            <td>YYYY-MMMM-DDDD HH:00:00</td>
-                            <td>(linkMod) / (linkDel)</td>
-                        </tr>
+                        {
+                            citas && (
+                                citas.map((cita, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            <th scope="row">{i + 1}</th>
+                                            <td>{cita.uuidVeterinario}</td>
+                                            <td>{cita.inital_date}</td>
+                                            <td>(linkMod) / (linkDel)</td>
+                                        </tr>
+                                    )
+                                })
+                            )
+                        }
                     </tbody>
                 </table>
                 <br></br>
-                <Link to="/mostrarMascota">Back</Link>
-            </div>          
+                <Link to={`/mostrarMascota/${uuid}`}>back</Link>
+            </div>
         );
     }
 }
+
 export default CitasMascota;

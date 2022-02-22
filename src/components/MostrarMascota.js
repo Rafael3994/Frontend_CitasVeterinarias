@@ -40,7 +40,7 @@ function MostrarMascota() {
                                 <th scope="row">{ }</th>
                                 <td>{mascota.name}</td>
                                 <td>{mascota.tipo}</td>
-                                <td><Link to={`/mostrarMascota/${mascota.uuid}`}>ver citas</Link></td>
+                                <td><Link to={`/citasMascota/${mascota.uuid}`}>ver citas</Link></td>
                             </tr>
                         )
 
