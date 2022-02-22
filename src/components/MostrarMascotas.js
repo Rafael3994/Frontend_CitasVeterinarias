@@ -1,9 +1,7 @@
 import { React, useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link, Navigate } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
-// import MascotasService from "../services/mascotas.service";
 
 function MostrarMascotas(props) {
     const [items, setItems] = useState([]);
@@ -16,7 +14,6 @@ function MostrarMascotas(props) {
             if (res) {
                 localStorage.removeItem("userToken");
                 setIsToken(false)
-                // this.setState({ isToken: false });
             }
         });
     }

@@ -3,7 +3,7 @@ import axios from "axios";
 import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:2022/users/';
-
+// TODO: METER TRY CATCH
 class AuthService {
     login(email, password) {
       return axios.post(API_URL+'login', {
@@ -30,12 +30,7 @@ class AuthService {
         "email": email,
         "password": password
       }).then(() => {
-        return this.login(email, password).then(response => {
-          if (response.data) {
-            localStorage.setItem("userToken", JSON.stringify(response.data));
-            return true;
-          }
-        }).catch(error => {return false});
+        return this.login(email, password);
       })  
       .catch(() => {return false});
     }
