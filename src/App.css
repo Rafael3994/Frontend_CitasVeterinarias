@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* My Styles */
+.margin-right-7 {
+  margin-right: 7%;
+}
+
+.margin-right-11 {
+  margin-right: 11%;
+}
+
+.width-13-em {
+  width: 13em;
+}
