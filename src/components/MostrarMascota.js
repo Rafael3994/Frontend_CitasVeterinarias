@@ -30,6 +30,7 @@ function MostrarMascota() {
                         <th scope="col"></th>
                         <th scope="col">Name</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Edit</th>
                         <th scope="col">Citas</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@ function MostrarMascota() {
                                 <th scope="row">{ }</th>
                                 <td>{mascota.name}</td>
                                 <td>{mascota.tipo}</td>
+                                <td><Link to={`/ModificarMascota/${mascota.uuid}`}>modificar</Link></td>
                                 <td><Link to={`/citasMascota/${mascota.uuid}`}>ver citas</Link></td>
                             </tr>
                         )
