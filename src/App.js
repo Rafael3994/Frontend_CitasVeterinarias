@@ -24,7 +24,7 @@ function App() {
           <Route path="registerUser" element={<RegisterUser />} />
           <Route path="registerMascota" element={<RegisterMascota />} />
           <Route path="mostrarMascotas" element={<MostrarMascotas />} />
-          <Route path="mostrarMascota" element={<MostrarMascota />} />
+          <Route path="mostrarMascota/:uuid" element={<MostrarMascota />} />
           <Route path="citasMascota" element={<CitasMascota />} />
         </Routes>
         </BrowserRouter>
