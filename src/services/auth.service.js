@@ -3,41 +3,53 @@ import axios from "axios";
 import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:2022/users/';
-// TODO: METER TRY CATCH
+
 class AuthService {
     login(email, password) {
-      return axios.post(API_URL+'login', {
-          "email": email,
-          "password": password
-        })
-        .then(response => {
-          if (response.data) {
-            localStorage.setItem("userToken", JSON.stringify(response.data));
-          }
-          return true;
-        }).catch(error => {return false});
+      try {
+        return axios.post(API_URL+'login', {
+            "email": email,
+            "password": password
+          })
+          .then(response => {
+            if (response.data) {
+              localStorage.setItem("userToken", JSON.stringify(response.data));
+            }
+            return true;
+          }).catch(error => {return false});
+      } catch (error) {
+      }
     }
   
     logout() {
-      return axios.get(API_URL+'logout', { headers: authHeader() })
-        .then(() => {return true}).catch(() => {return false});
+      try {
+        return axios.get(API_URL+'logout', { headers: authHeader() })
+          .then(() => {return true}).catch(() => {return false});
+      } catch (error) {
+      }
     }
   
     register(email, password, name, subname) {
-      return axios.post(API_URL + "register", {
-        "name": name,
-        "subname": subname,
-        "email": email,
-        "password": password
-      }).then(() => {
-        return this.login(email, password);
-      })  
-      .catch(() => {return false});
+      try {
+        return axios.post(API_URL + "register", {
+          "name": name,
+          "subname": subname,
+          "email": email,
+          "password": password
+        }).then(() => {
+          return this.login(email, password);
+        })  
+        .catch(() => {return false});
+      } catch (error) {
+      }
     }
 
     getMascotas() {
-      return axios.get(API_URL+'mascotas', { headers: authHeader() })
-        .then((res) => {return res.data}).catch(() => {return false});
+      try {
+        return axios.get(API_URL+'mascotas', { headers: authHeader() })
+          .then((res) => {return res.data}).catch(() => {return false});
+      } catch (error) {
+      }
     }
   
     getCurrentUser() {
