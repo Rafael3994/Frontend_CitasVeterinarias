@@ -18,9 +18,12 @@ class RegisterUser extends React.Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        console.log('hey');
-        AuthService.register(this.state.email, this.state.password, this.state.nameUser, this.state.subname)
-        this.setState({isLogged: true});
+        AuthService.register(
+            this.state.email, this.state.password, 
+            this.state.nameUser, this.state.subname)
+                .then((res) => {
+                    this.setState({isLogged: true});
+                })
         
     }
 

@@ -78,7 +78,7 @@ class MostrarMascotas extends React.Component {
                                             <tr key={i}>
                                                 <th scope="row">{i}</th>
                                                 <td>{mascota.name}</td>
-                                                <td><Link to="/mostrarMascota">Añadir mascota</Link></td>
+                                                <td><Link to="/mostrarMascota">ver mascota</Link></td>
                                             </tr>
                                         )
                                     }))
