@@ -7,55 +7,68 @@ import AuthService from "../services/auth.service";
 function ModificarMascota() {
 
     const { uuid } = useParams();
-    const [ mascota, setMascota ]  = useState({});
-    const [ namePet, setNamePet ]  = useState("");
-    const [ tipo, setTipo ]  = useState("");
+    const [mascota, setMascota] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [modificarMascota, setModificarMascota] = useState({
+        namePet: "",
+        tipo: ""
+    });
 
     useEffect(() => {
         try {
             MascotasService.getMascota(uuid).then(response => {
                 setMascota(response.data[0]);
-                setNamePet(mascota.name)
-                setTipo(mascota.tipo)
-            }).catch(error => {
+                console.log("mascota ",mascota.name);
+                setModificarMascota({ namePet: mascota.name, tipo: mascota.tipo })
+                console.log(modificarMascota);
+                setIsLoaded(true);
+            }).catch(error => { 
             })
         } catch (error) {
         }
     }, []);
 
-    // const handleChange = (e) => {
+    
+    const handleChange = (e) => {
+        const nameTarget = e.target.name;
+        const valueTarget = e.target.value;
+        setModificarMascota({ nameTarget: valueTarget })
+    }
 
-    //     // console.log(e.target);
-    // }
-
-    return (
-        <div>
-            <h2>Modificar mascota</h2>
-
-            <form /*onSubmit={this.handleSubmit}*/>
-                <div className="form-group">
-                    <label>Name
-                        <input
-                            name="namePet" value={namePet} /*onChange={handleChange}*/ required type="text" className="form-control" placeholder="Enter its name">
-                        </input>
-                    </label>
-                    <br></br><br></br>
-                    <label>Type
-                        <select name="tipo" value={tipo} /*onChange={handleChange}*/ required className="form-control width-13-em" placeholder="Select its type">
-                            <option>Gato</option>
-                            <option>Perro</option>
-                            <option>Pajaro</option>
-                        </select>
-                    </label>
-                </div>
-                <br></br>
-                <div className='d-flex flex-row'>
-                    <button type="submit" className="btn btn-primary margin-right-7">Modificar</button>
-                    <Link to={`/mostrarMascota/${uuid}`}>Back</Link>
-                </div>
-            </form>
-        </div>
-    );
+    if (!isLoaded) {
+        return <div>Loading...</div>
+    } else {
+        return (
+            <div>
+                <h2>Modificar mascota</h2>
+                {
+                    <form /*onSubmit={this.handleSubmit}*/>
+                        <p>{modificarMascota.namePet}</p>
+                        <div className="form-group">
+                            <label>Name
+                                <input
+                                    name="namePet" value={modificarMascota.namePet} onChange={handleChange} required type="text" className="form-control" placeholder="Enter its name">
+                                </input>
+                            </label>
+                            <br></br><br></br>
+                            <label>Type
+                                <select name="tipo" value={modificarMascota.tipo} onChange={handleChange} required className="form-control width-13-em" placeholder="Select its type">
+                                    <option>Gato</option>
+                                    <option>Perro</option>
+                                    <option>Pajaro</option>
+                                </select>
+                            </label>
+                        </div>
+                        <br></br>
+                        <div className='d-flex flex-row'>
+                            <button type="submit" className="btn btn-primary margin-right-7">Modificar</button>
+                            <Link to={`/mostrarMascota/${uuid}`}>Back</Link>
+                        </div>
+                    </form>
+                }
+            </div>
+        );
+    }
 }
 
 
