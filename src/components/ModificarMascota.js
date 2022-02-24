@@ -9,18 +9,17 @@ function ModificarMascota() {
     const { uuid } = useParams();
     const [mascota, setMascota] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
-    const [modificarMascota, setModificarMascota] = useState({
-        namePet: "",
-        tipo: ""
-    });
+    const [namePet, setNamePet ] = useState("");
+    const [tipo, setTipo ] = useState("");
 
     useEffect(() => {
         try {
             MascotasService.getMascota(uuid).then(response => {
+                console.log(response.data[0]);
                 setMascota(response.data[0]);
-                console.log("mascota ",mascota.name);
-                setModificarMascota({ namePet: mascota.name, tipo: mascota.tipo })
-                console.log(modificarMascota);
+                console.log("mascota ", mascota);
+                setNamePet(mascota.name);
+                setTipo(mascota.tipo);
                 setIsLoaded(true);
             }).catch(error => { 
             })
@@ -31,8 +30,12 @@ function ModificarMascota() {
     
     const handleChange = (e) => {
         const nameTarget = e.target.name;
-        const valueTarget = e.target.value;
-        setModificarMascota({ nameTarget: valueTarget })
+        // const valueTarget = e.target.value;
+        if(nameTarget === "namePet") {
+            setNamePet(e.target.value);
+        } else {
+            setTipo(e.target.value);
+        }
     }
 
     if (!isLoaded) {
@@ -42,17 +45,17 @@ function ModificarMascota() {
             <div>
                 <h2>Modificar mascota</h2>
                 {
-                    <form /*onSubmit={this.handleSubmit}*/>
-                        <p>{modificarMascota.namePet}</p>
+                    <form /*onSubmit={handleSubmit}*/>
+                        <p>{mascota.name}</p>
                         <div className="form-group">
                             <label>Name
                                 <input
-                                    name="namePet" value={modificarMascota.namePet} onChange={handleChange} required type="text" className="form-control" placeholder="Enter its name">
+                                    name="namePet" value={namePet} onChange={handleChange} required type="text" className="form-control" placeholder="Enter its name">
                                 </input>
                             </label>
                             <br></br><br></br>
                             <label>Type
-                                <select name="tipo" value={modificarMascota.tipo} onChange={handleChange} required className="form-control width-13-em" placeholder="Select its type">
+                                <select name="tipo" value={tipo} onChange={handleChange} required className="form-control width-13-em" placeholder="Select its type">
                                     <option>Gato</option>
                                     <option>Perro</option>
                                     <option>Pajaro</option>
