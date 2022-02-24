@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import MascotasService from "../services/mascotas.service";
 
 function ModificarMascota() {
@@ -8,6 +8,8 @@ function ModificarMascota() {
     const { uuid } = useParams();
     const [mascota, setMascota] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isModify, setIsModify] = useState(false);
+    
     const [namePet, setNamePet ] = useState("");
     const [tipo, setTipo ] = useState("");
 
@@ -29,27 +31,25 @@ function ModificarMascota() {
         const nameTarget = e.target.name;
         if(nameTarget === "namePet") {
             setNamePet(e.target.value);
-            console.log("namePet ", namePet);
         } else {
             setTipo(e.target.value);
-            console.log("tipo ", tipo);
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("submit");
-        // const res = MascotasService.modificar(uuid, namePet, tipo);
-        // const res = AuthService.login(this.state.user, this.state.password)
-        // if (res) {
-        //     this.setState({ isLogged: true })
-        // } else {
-        //     alert('Datos incorrectos o usuario invalido.')
-        // }
+        const res = MascotasService.modificar(uuid, namePet, tipo);
+        if (res) {
+            setIsModify(true);
+        } else {
+            alert('No se modifico.')
+        }
     }
 
     if (!isLoaded) {
         return <div>Loading...</div>
+    }  else if(isModify) {
+        return <Navigate to={`/mostrarMascota/${uuid}`} />
     } else {
         return (
             <div>

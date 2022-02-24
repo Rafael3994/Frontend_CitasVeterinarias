@@ -49,7 +49,6 @@ class MascotasService {
           return true;
         })
         .catch(() => { return false });
-
         return res;
 
     } catch (error) {
