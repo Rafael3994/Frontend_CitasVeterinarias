@@ -2,7 +2,6 @@ import { React, useState, useEffect } from 'react';
 
 import { Link, useParams } from "react-router-dom";
 import MascotasService from "../services/mascotas.service";
-import AuthService from "../services/auth.service";
 
 function ModificarMascota() {
 
@@ -15,11 +14,9 @@ function ModificarMascota() {
     useEffect(() => {
         try {
             MascotasService.getMascota(uuid).then(response => {
-                console.log(response.data[0]);
                 setMascota(response.data[0]);
-                console.log("mascota ", mascota);
-                setNamePet(mascota.name);
-                setTipo(mascota.tipo);
+                setNamePet(response.data[0].name);
+                setTipo(response.data[0].tipo);
                 setIsLoaded(true);
             }).catch(error => { 
             })
@@ -30,12 +27,25 @@ function ModificarMascota() {
     
     const handleChange = (e) => {
         const nameTarget = e.target.name;
-        // const valueTarget = e.target.value;
         if(nameTarget === "namePet") {
             setNamePet(e.target.value);
+            console.log("namePet ", namePet);
         } else {
             setTipo(e.target.value);
+            console.log("tipo ", tipo);
         }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("submit");
+        // const res = MascotasService.modificar(uuid, namePet, tipo);
+        // const res = AuthService.login(this.state.user, this.state.password)
+        // if (res) {
+        //     this.setState({ isLogged: true })
+        // } else {
+        //     alert('Datos incorrectos o usuario invalido.')
+        // }
     }
 
     if (!isLoaded) {
@@ -45,7 +55,7 @@ function ModificarMascota() {
             <div>
                 <h2>Modificar mascota</h2>
                 {
-                    <form /*onSubmit={handleSubmit}*/>
+                    <form onSubmit={handleSubmit}>
                         <p>{mascota.name}</p>
                         <div className="form-group">
                             <label>Name
