@@ -21,7 +21,7 @@ class MascotasService {
 
   getMascota(uuid) {
     try {
-      return axios.post(API_URL + "uuid", {
+       const res = axios.post(API_URL + "uuid", {
         "uuidMascota": uuid
       }, { headers: authHeader() })
         .then((res) => {
@@ -31,10 +31,30 @@ class MascotasService {
           console.log(error);
           return false
         });
+        return res;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async modificar(uuidMascota, name, tipo) {
+    try {
+      // TODO: hacer endpoint en el backend y modificar este metodo.
+      const res = await axios.put(API_URL + "modificar", {
+        "uuidMascota": uuidMascota,
+        "name": name,
+        "tipo": tipo
+      }, { headers: authHeader() })
+        .then(() => {
+          return true;
+        })
+        .catch(() => { return false });
+        return res;
+
     } catch (error) {
     }
-
   }
+
 
 }
 

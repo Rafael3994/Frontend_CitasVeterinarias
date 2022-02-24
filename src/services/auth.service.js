@@ -5,9 +5,9 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:2022/users/';
 
 class AuthService {
-    login(email, password) {
+    async login(email, password) {
       try {
-        return axios.post(API_URL+'login', {
+        const res = await axios.post(API_URL+'login', {
             "email": email,
             "password": password
           })
@@ -17,6 +17,7 @@ class AuthService {
             }
             return true;
           }).catch(error => {return false});
+          return res;
       } catch (error) {
       }
     }
