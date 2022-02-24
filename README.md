@@ -12,9 +12,8 @@ Estas instrucciones te permitirán obtener una copia del proyecto en funcionamie
 <br>
 
 * Clona el repositorio a tu maquina local
-<!-- TODO: Falta poner el enlace -->
 ```
-git clone 
+git clone https://github.com/Rafael3994/Proyecto6_Frontend_CitasVeterinarias.git 
 ```
 
 * Entramos al repositoria clonado e instalamos las dependencias
@@ -36,7 +35,6 @@ yarn start
 ## Ejecutando las pruebas ⚙️
 
 Estas son las funcionalidades de la aplicacion:
-<!-- TODO: Faltan poner las funcionalidades -->
 
 ## Construido con 🛠️
 
