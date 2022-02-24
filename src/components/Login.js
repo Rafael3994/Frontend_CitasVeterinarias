@@ -13,13 +13,19 @@ class Login extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        AuthService.login(this.state.user, this.state.password).then(res => {
-            if(res) {
-                this.setState({isLogged: true})
-            } else {
-                alert('Datos incorrectos o usuario invalido.')
-            }
-        })
+        const res = AuthService.login(this.state.user, this.state.password)
+        if (res) {
+            this.setState({ isLogged: true })
+        } else {
+            alert('Datos incorrectos o usuario invalido.')
+        }
+        // AuthService.login(this.state.user, this.state.password).then(res => {
+        //     if(res) {
+        //         this.setState({isLogged: true})
+        //     } else {
+        //         alert('Datos incorrectos o usuario invalido.')
+        //     }
+        // })
     }
 
     handleChange(e) {

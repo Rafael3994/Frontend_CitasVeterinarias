@@ -12,7 +12,6 @@ function CitasMascota() {
     useEffect(() => {
         try {
             CitasService.getCitas(uuid).then((res) => {
-                console.log(res.data);
                 setCitas(res.data)
                 setIsLoaded(true);
             })

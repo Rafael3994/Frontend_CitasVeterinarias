@@ -10,6 +10,7 @@ import RegisterMascota from "./components/RegisterMascota";
 import MostrarMascotas from "./components/MostrarMascotas";
 import MostrarMascota from "./components/MostrarMascota";
 import CitasMascota from "./components/CitasMascota";
+import ModificarMascota from "./components/ModificarMascota";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="mostrarMascotas" element={<MostrarMascotas />} />
           <Route path="mostrarMascota/:uuid" element={<MostrarMascota />} />
           <Route path="citasMascota/:uuid" element={<CitasMascota />} />
+          <Route path="modificarMascota/:uuid" element={<ModificarMascota />} />
         </Routes>
         </BrowserRouter>
       </div>
