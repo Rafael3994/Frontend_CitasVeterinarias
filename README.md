@@ -1,6 +1,8 @@
-# Proyecto6_Frondend_CitasVeterinarias
+# Frondend_CitasVeterinarias
 
 Este proyecto es un proyecto es el frondend de las citas veterinarias, donde conectare el frond con el back para dar la funcionalidad grafica a la aplicacion.
+
+![presentacion](./public/readme/presentacion.PNG)
 
 ## Comenzando 🚀
 
@@ -8,12 +10,12 @@ Estas instrucciones te permitirán obtener una copia del proyecto en funcionamie
 
 ### Instalación 🔧
 
-* Para conseguir que la aplicacion funcione necesitas tener la aplicacion de backend funcional. [Repositorio del Backend](https://github.com/Rafael3994/Proyecto5_Backend_CitasVeterinarias). Arrancamos el servidor.
+* Para conseguir que la aplicacion funcione necesitas tener la aplicacion de backend funcional. [Repositorio del Backend](https://github.com/Rafael3994/Backend_CitasVeterinarias). Arrancamos el servidor.
 <br>
 
 * Clona el repositorio a tu maquina local
 ```
-git clone https://github.com/Rafael3994/Proyecto6_Frontend_CitasVeterinarias.git 
+git clone https://github.com/Rafael3994/Frontend_CitasVeterinarias.git 
 ```
 
 * Entramos al repositoria clonado e instalamos las dependencias
